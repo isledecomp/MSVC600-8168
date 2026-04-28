@@ -1,0 +1,28 @@
+@echo off
+rem
+rem Root of Visual Developer Studio Common files.
+set VSCommonDir=%~dp0\..\..\Common
+
+rem
+rem Root of Visual C++ installed files.
+rem
+set MSVCDir=%~dp0\..
+
+rem
+rem VcOsDir is used to help create either a Windows 95 or Windows NT specific path.
+rem
+set VcOsDir=WIN95
+if "%OS%" == "Windows_NT" set VcOsDir=WINNT
+
+rem
+echo Setting environment for using Microsoft Visual C++ tools.
+rem
+
+if "%OS%" == "Windows_NT" set PATH=%MSVCDir%\BIN;%VSCommonDir%\TOOLS\%VcOsDir%;%VSCommonDir%\TOOLS;%PATH%
+if "%OS%" == "" set PATH=""%MSVCDir%\BIN";"%VSCommonDir%\TOOLS\%VcOsDir%";"%VSCommonDir%\TOOLS";"%windir%\SYSTEM";"%PATH%"
+set INCLUDE=%MSVCDir%\ATL\INCLUDE;%MSVCDir%\INCLUDE;%MSVCDir%\MFC\INCLUDE;%INCLUDE%
+set LIB=%MSVCDir%\LIB;%MSVCDir%\MFC\LIB;%LIB%
+
+set VcOsDir=
+set VSCommonDir=
+
